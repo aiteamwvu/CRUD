@@ -25,8 +25,8 @@ def readArticle(title):
     result = results.single()
     print(result['subject'])
 
-# createArticle(ajson2)
-# createArticle(ajson3)
+createArticle(ajson2)
+createArticle(ajson3)
 
 readArticle("article title 0002")
 readArticle("article title 0003")
