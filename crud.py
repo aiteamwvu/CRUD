@@ -10,7 +10,7 @@ ajson3 = json.loads(article3)
 # print('{0}' .format(ajson['id']))
 
 def createArticle(aj):
-    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("username","password"))
     session = dr.session()
     results = session.run("CREATE (" + aj['id'] + ":Article {title:{title}, subject:{subject}, description:{description}, liked:0, weight:0})"
                           ,{"title": aj['title'],"subject": aj['subject'],"description": aj['description']})
