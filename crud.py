@@ -15,7 +15,8 @@ def createArticle(aj):
     results = session.run("CREATE (" + aj['id'] + ":Article {title:{title}, subject:{subject}, description:{description}, liked:0, weight:0})"
                           ,{"title": aj['title'],"subject": aj['subject'],"description": aj['description']})
     session.close()
-    print(results)
+    # print(vars(results))
+    print("create node: " + results.parameters["title"])
 
 def readArticle(title):
     dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
@@ -25,8 +26,58 @@ def readArticle(title):
     result = results.single()
     print(result['subject'])
 
+def updateArticle(title, subject):
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
+    session = dr.session()
+    results = session.run("MATCH (article:Article) WHERE article.title = {title} " +
+                          "SET article.subject = {subject} " +
+                          "RETURN article.subject as subject", {"title": title, "subject": subject})
+    session.close()
+    result = results.single()
+    print(result['subject'])
+
+# not done
+def deleteArticle(title):
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
+    session = dr.session()
+    results = session.run("MATCH (article:Article) WHERE article.title = {title} " +
+                          "DELETE article", {"title": title})
+    session.close()
+
+# not done
+def linkArticles(title1, title2):
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
+    session = dr.session()
+    results = session.run("MATCH (article:Article) WHERE article.title = {title} RETURN article.subject as subject",{"title": title})
+    session.close()
+    result = results.single()
+    print(result['subject'])
+
+def deleteDB():
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
+    session = dr.session()
+    session.run("MATCH (n) DETACH DELETE n")
+    session.close()
+
+def readDB():
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("neo4j","west0ver"))
+    session = dr.session()
+    results = session.run("MATCH (n) RETURN n")
+    session.close()
+    print(vars(results))
+    print("---------")
+    print(results._buffer)
+    print("---------")
+    for r in results:
+        print(r[0].properties["title"])
+
+deleteDB()
 createArticle(ajson2)
 createArticle(ajson3)
 
 readArticle("article title 0002")
 readArticle("article title 0003")
+
+updateArticle("article title 0003","Microsoft")
+readArticle("article title 0003")
+readDB()
