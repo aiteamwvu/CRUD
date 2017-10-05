@@ -18,7 +18,7 @@ def createArticle(aj):
     print(results)
 
 def readArticle(title):
-    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("<user>","<user>"))
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("<user>","<pwd>"))
     session = dr.session()
     results = session.run("MATCH (article:Article) WHERE article.title = {title} RETURN article.subject as subject",{"title": title})
     session.close()
