@@ -20,12 +20,20 @@ ajson4 = json.loads(article4)
 dr = GraphDatabase.driver(url, auth=basic_auth(username,password))
 
 def createArticle(aj):
+<<<<<<< HEAD
+=======
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("<user>", "<pwd>"))
+>>>>>>> 669a7f04f48711a7c8099e86a2b933d5f3c64369
     session = dr.session()
     results = session.run("CREATE (" + aj['id'] + ":Article {title:{title}, subject:{subject}, description:{description}, liked:0, weight:0})"
                           ,{"title": aj['title'],"subject": aj['subject'],"description": aj['description']})
     session.close()
 
 def readArticle(title):
+<<<<<<< HEAD
+=======
+    dr = GraphDatabase.driver("bolt://localhost:7687", auth=basic_auth("<user>","<pwd>"))
+>>>>>>> 669a7f04f48711a7c8099e86a2b933d5f3c64369
     session = dr.session()
     results = session.run("MATCH (article:Article) WHERE article.title = {title} RETURN article.subject as subject",{"title": title})
     session.close()
