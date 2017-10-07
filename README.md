@@ -10,4 +10,7 @@ Start neo4j server (http://localhost:7474/browser/):
   sudo /usr/bin/neo4j start
 
 Install python neo4j-driver:
-  sudo pip install neo4j-driver  
+  sudo pip install neo4j-driver
+
+Create config.json file with text:
+{"username":"neo4j","password":"mypassword"}
