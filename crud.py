@@ -90,7 +90,7 @@ def readDB():
     for r in results:
         print(r[0].properties["title"])
 
-#!!!!!CAUTION THE FUNCTION deleteDB() WILL DELETE ALL OF THE NEO4J DATABASE!!!!!
+#!!!!!WARNING THE FUNCTION deleteDB() WILL DELETE ALL OF THE NEO4J DATABASE!!!!!
 #!!!!!USE ONLY WHEN CONNECTED TO YOUR LOCAL NEO4J DATABASE!!!!!
 #!!!!!NEVER RUN THIS SCRIPT ON THE GCP SERVER, IT WILL DELETE ALL DATA IN NEO4J!!!!!
 #deleteDB() # ONLY uncomment when running script from localhost
