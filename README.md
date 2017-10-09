@@ -14,3 +14,8 @@ Install python neo4j-driver:
 
 Create config.json file with text:
 {"username":"neo4j","password":"mypassword"}
+
+!!!!!CAUTION THE FUNCTION deleteDB() WILL DELETE ALL OF THE NEO4J DATABASE!!!!!
+!!!!!USE ONLY WHEN CONNECTED TO YOUR LOCAL NEO4J DATABASE!!!!!
+!!!!!NEVER RUN THIS SCRIPT ON THE GCP SERVER, IT WILL DELETE ALL DATA IN NEO4J!!!!!
+#deleteDB() # ONLY uncomment when running script from localhost

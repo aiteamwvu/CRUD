@@ -90,7 +90,11 @@ def readDB():
     for r in results:
         print(r[0].properties["title"])
 
-deleteDB()
+#!!!!!CAUTION THE FUNCTION deleteDB() WILL DELETE ALL OF THE NEO4J DATABASE!!!!!
+#!!!!!USE ONLY WHEN CONNECTED TO YOUR LOCAL NEO4J DATABASE!!!!!
+#!!!!!NEVER RUN THIS SCRIPT ON THE GCP SERVER, IT WILL DELETE ALL DATA IN NEO4J!!!!!
+#deleteDB() # ONLY uncomment when running script from localhost
+
 createArticle(ajson1)
 createArticle(ajson2)
 createArticle(ajson3)
